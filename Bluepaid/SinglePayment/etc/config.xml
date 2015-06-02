@@ -1,0 +1,95 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Bluepaid_SinglePayment>
+            <version>0.1.0</version>
+        </Bluepaid_SinglePayment>
+    </modules>
+    
+    <global>
+        
+        <models>
+            <bluepaid>
+                <class>Bluepaid_SinglePayment_Model</class>
+            </bluepaid>
+        </models>
+        
+        <helpers>
+            <bluepaid>
+                <class>Bluepaid_SinglePayment_Helper</class>
+            </bluepaid>
+        </helpers>
+        
+        <payment>
+            <groups>
+                <bluepaid>Bluepaid</bluepaid>
+            </groups>
+        </payment>
+        
+        <events>
+            <checkout_type_onepage_save_order_after>
+                <observers>
+                    <bluepaid_singlepayment_observer>
+                        <class>Bluepaid_SinglePayment_Model_Observer</class>
+                        <method>saveOrderQuoteToSession</method>
+                    </bluepaid_singlepayment_observer>
+                </observers>
+            </checkout_type_onepage_save_order_after>
+        </events>
+        
+    </global>
+    
+    <default>
+        <payment>
+            <bluepaid>
+                <model>bluepaid/standard</model>
+                <active>1</active>
+                <allowspecific>0</allowspecific>
+                <title>Credit Card (Bluepaid) </title>
+	            <group>bluepaid</group>
+                <payment_action>sale</payment_action>
+                <ipaddressbpi>193.33.47.34;193.33.47.35</ipaddressbpi>
+				<refill_bpcart>1</refill_bpcart>
+				
+				<redirecturl></redirecturl>	
+				<confirmurl>bluepaid/standard/success</confirmurl>	
+				<cancelurl>bluepaid/standard/cancel</cancelurl>				
+				<gatewayurl>https://www.bluepaid.com/in.php</gatewayurl>	
+				<merchantkey>12345XXX</merchantkey>			
+				<!--Mode de validation-->
+				<bpixt_mode>
+					<TEST>
+                        <code>TEST</code>
+                        <name>Test</name>
+                    </TEST>
+					<PRODUCTION>
+                        <code>PRODUCTION</code>
+                        <name>Production</name>
+                    </PRODUCTION>
+                </bpixt_mode>
+				
+            </bluepaid>
+        </payment>
+        <bluepaid>
+            <settings>
+                <activationstatus>0</activationstatus>
+            </settings>
+        </bluepaid>
+    </default>
+    
+    <frontend>
+<!--        <secure_url>
+            <bluepaid_processing>/bluepaid/standard</bluepaid_processing>
+        </secure_url>-->
+        <routers>
+            <bluepaid>
+                <use>standard</use>
+                <args>
+                    <module>Bluepaid_SinglePayment</module>
+                    <frontName>bluepaid</frontName>
+                </args>
+            </bluepaid>
+        </routers>
+    </frontend>
+
+</config>

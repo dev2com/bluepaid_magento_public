@@ -1,0 +1,139 @@
+<?xml version="1.0"?>
+<config>
+    <sections>
+        <payment>
+            <groups>
+                <!-- This node name should match your module name in the config.xml and model. !-->
+                <bluepaid translate="label" module="bluepaid">
+                    <label>Bluepaid</label>
+                    <comment>
+                        Paiement sécurisé par carte bancaire - bluepaid
+                    </comment>
+                    <sort_order>700</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>0</show_in_store>
+                    <fields>
+                        
+                        <active translate="label">
+                            <label>Enabled</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </active>
+						
+						<!-- Mode -->
+<!--                        <bpixt_mode translate="label">
+                            <label>Mode</label>
+                            <comment>TEST or PRODUCTION</comment>
+                            <frontend_type>select</frontend_type>
+							<source_model>Bluepaid_SinglePayment_model_source_bpiModes</source_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </bpixt_mode>-->
+                        
+                        <title translate="label">
+                            <label>Title</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </title> 
+                        
+                        <merchantkey translate="label">
+                            <label>Identifiant de compte d'encaissement</label>
+                            <frontend_type>text</frontend_type>
+                            <!--backend_model>adminhtml/system_config_backend_encrypted</backend_model>-->
+                            <sort_order>3</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </merchantkey>
+
+                        <gatewayurl translate="label">
+                            <label>URL de la plateforme Bluepaid</label>
+                            <comment><![CDATA[The URL to call for payment.]]></comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>5</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </gatewayurl> 
+
+                        <ipaddressbpi translate="label">
+                            <label>Adresses IP autorisées</label>
+                            <comment><![CDATA[The IP address (of bluepaid) authorized to access your plateform to change status of orders.]]></comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>5</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </ipaddressbpi> 
+
+                        <redirecturl translate="label">
+                            <label>URL de retour pour le client</label>
+                            <comment><![CDATA[The URL where folks should be sent to complete payment.]]></comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>6</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </redirecturl> 
+
+                        <cancelurl translate="label">
+                            <label>URL de retour sans validation</label>
+                            <comment><![CDATA[The URL where folks should be sent to return with if he does not complete payment page.]]></comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>7</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </cancelurl>
+
+                        <confirmurl translate="label">
+                            <label>URL de confirmation de transaction</label>
+                            <comment><![CDATA[The URL to confirm order. Do not modify if you are not sure.]]></comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>8</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </confirmurl> 
+                        
+						<!--<registered_order_status translate="label,comment" module="bluepaid">-->
+                        <registered_order_status translate="label">
+                            <label>Registered orders status</label>
+							<comment>Status of orders when payment succeeded. If you choose a processing status, the invoice will automatically be created.</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_order_status_newprocessing</source_model>
+                            <sort_order>9</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </registered_order_status>
+                        
+                        <refill_bpcart translate="label,comment" module="bluepaid">
+                            <label>Refill cart on failure</label>
+							<comment>Re-create the cart after a payment failure (fix magento behaviour)</comment>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>69</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </refill_bpcart>
+                        
+                    </fields>
+                </bluepaid>
+                
+            </groups>
+        </payment>
+    </sections>
+  
+</config>
